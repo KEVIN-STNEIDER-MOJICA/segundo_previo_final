@@ -1,30 +1,56 @@
 ---
-title: "Untitled"
+title: "SEGUNDO PREVIO DISEÑO EXPERIMENTOS"
 output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Nombre: KEVIN MOJICA
+## Codigo: 1950115
 
-## GitHub Documents
+## Introduccion
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+La base de datos Theoph, tiene 132 filas y 5 columnas de datos de un experimento sobre la farmacocinética de la teofilina. Boeckmann, Sheiner y Beal (1994) informan datos de un estudio del Dr. Robert Upton sobre la cinética del fármaco antiasmático teofilina. Doce sujetos recibieron dosis orales de teofilina y luego se midieron las concentraciones séricas en 11 puntos de tiempo durante las siguientes 25 horas. Y las variables están representadas en la data de la siguiente manera:
+- Subject: un factor ordenado con niveles 1, ..., a 12 e identifica al sujeto sobre el que se realizó la observación. El orden se da según como va aumentando la concentración máxima de teofilina observada. 
+- Wt: peso del sujeto (kg).
+- Dose: dosis de teofilina administrada por vía oral al sujeto (mg / kg).
+- Time: tiempo desde la administración del fármaco cuando se extrajo la muestra (horas).
+- conc: concentración de teofilina en la muestra (mg / L).
+## Primer punto:
 
-## Including Code
 
-You can include R code in the document as follows:
 
-```{r cars}
-summary(cars)
+```{r }
+library(tidyverse)
+library(dplyr)
+
 ```
 
-## Including Plots
+## Base de datos de teofilina
 
-You can also embed plots, for example:
+Agrupada por sujetos de estudio 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r pressure, echo=TRUE}
+library(dplyr)
+theoph1 <- group_by(Theoph,Subject)
+Tiempo <- summarise(theoph1, tiempo_promedio=mean(Time))
+
+Tiempo
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Podemos evidenciar en la tabla de tiempo promedio en donde el mayor promedio de tiempo es el sujeto 1 con un promedio de 5,95 y tambien evidenciamos el menor promedio de tiempo en el sujeto 7 con 5.865455.
+
+## Tiempo de Toma de muestra vs Concentracion (Teofilina)
+
+
+```{r}
+library(tidyverse)
+DF1 <- mutate(Theoph, Razon_Time_conc=Time/conc)
+Conglomerado_tiempo <- DF1 %>%dplyr::filter(Time>=0.25 & Time<=1)
+
+```
+
+
+
+
