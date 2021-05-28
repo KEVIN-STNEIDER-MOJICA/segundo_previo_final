@@ -56,7 +56,14 @@ DF2 <- DF1 %>% select(Time, Dose) %>% summarize_all(sd)
 Podemos observar la desviacion estandar entre los sujetos durante ese periodo de tiempo, con un tiempo de: 6.925 y una dosis de: 0.718.
 
 
-## 
+## PROMEDIO DE CONCENTRACIONES 
 
+
+```{r}
+library(dplyr)
+conc <- summarise(theoph1, conc_promedio=mean(conc))
+
+```
+Se hizo un análisis libre en el cual se analizo dos variables estudiadas en este caso hice el promedio de la concentración de teofilina en la muestra podemos ver que el sujeto numero 1 es mayor con 6,439 y el numero menor es el sujeto 6 con 3,52
 
 
