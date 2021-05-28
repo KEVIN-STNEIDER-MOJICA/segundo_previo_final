@@ -48,9 +48,15 @@ Podemos evidenciar en la tabla de tiempo promedio en donde el mayor promedio de 
 library(tidyverse)
 DF1 <- mutate(Theoph, Razon_Time_conc=Time/conc)
 Conglomerado_tiempo <- DF1 %>%dplyr::filter(Time>=0.25 & Time<=1)
+library(dplyr)
+DF2 <- DF1 %>% select(Time, Dose) %>% summarize_all(sd)
 
 ```
 
+Podemos observar la desviacion estandar entre los sujetos durante ese periodo de tiempo, con un tiempo de: 6.925 y una dosis de: 0.718.
+
+
+## 
 
 
 
